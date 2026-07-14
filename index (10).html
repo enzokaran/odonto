@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dentista - Clínica | Jardim Anália Franco, São Paulo</title>
+<meta name="description" content="Clínica odontológica em São Paulo. Atendimento humanizado, tecnologia e excelência. Avaliação 5.0 no Google." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --azul: #0F4C81;
+    --azul-escuro: #0A3B66;
+    --branco: #FFFFFF;
+    --cinza-claro: #F4F6F8;
+    --prata: #C7CDD3;
+    --dourado: #B9975B;
+    --texto: #1C2530;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--texto);
+    background:var(--branco);
+    line-height:1.6;
+  }
+
+  h1,h2,h3{ font-family:'Playfair Display', serif; }
+
+  .btn{
+    font-family:'Poppins', sans-serif;
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:16px 32px;
+    border-radius:4px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition: all .25s ease;
+    font-size:15px;
+    letter-spacing:.3px;
+  }
+  .btn-primary{ background:var(--azul); color:#fff; }
+  .btn-primary:hover{ background:var(--azul-escuro); transform:translateY(-2px); }
+  .btn-outline{ background:transparent; color:#fff; border-color:rgba(255,255,255,.5); }
+  .btn-outline:hover{ background:rgba(255,255,255,.12); border-color:#fff; }
+
+  /* NAVBAR */
+  #navbar{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:22px 6%;
+    display:flex; justify-content:space-between; align-items:center;
+    transition: all .35s ease;
+    background:transparent;
+  }
+  #navbar.scrolled{
+    background:rgba(255,255,255,.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:0 2px 20px rgba(15,76,129,.08);
+    padding:14px 6%;
+  }
+  .logo{
+    font-family:'Playfair Display', serif;
+    font-size:22px; font-weight:700;
+    color:#fff; transition:color .35s ease;
+  }
+  #navbar.scrolled .logo{ color:var(--azul); }
+  .nav-links{ display:flex; gap:34px; list-style:none; }
+  .nav-links a{
+    color:#fff; text-decoration:none; font-size:14.5px; font-weight:500;
+    transition:color .3s ease; position:relative;
+  }
+  #navbar.scrolled .nav-links a{ color:var(--texto); }
+  .nav-links a:hover{ color:var(--dourado); }
+  .nav-toggle{ display:none; background:none; border:none; font-size:26px; color:#fff; cursor:pointer; }
+  #navbar.scrolled .nav-toggle{ color:var(--azul); }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    background: linear-gradient(180deg, rgba(10,20,35,.55), rgba(10,20,35,.75)),
+      url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+  }
+  .hero-content{ max-width:820px; padding:0 24px; color:#fff; }
+  .hero-content span.eyebrow{
+    display:inline-block; font-family:'Poppins',sans-serif; font-size:13px; letter-spacing:2px;
+    text-transform:uppercase; color:var(--dourado); margin-bottom:18px; font-weight:600;
+  }
+  .hero-content h1{
+    font-size:clamp(32px, 5vw, 58px); font-weight:700; line-height:1.15; margin-bottom:20px;
+  }
+  .hero-content p{ font-size:18px; color:rgba(255,255,255,.85); margin-bottom:38px; }
+  .hero-btns{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
+  .rating-pill{
+    margin-top:36px; display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.25);
+    padding:10px 20px; border-radius:40px; font-size:14px; color:#fff;
+  }
+
+  section{ padding:110px 6%; }
+  .section-inner{ max-width:1180px; margin:0 auto; }
+  .eyebrow-dark{
+    font-family:'Poppins',sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase;
+    color:var(--dourado); font-weight:600; margin-bottom:14px; display:block;
+  }
+  h2.section-title{ font-size:clamp(28px,4vw,40px); font-weight:700; margin-bottom:20px; color:var(--azul-escuro); }
+  p.section-text{ color:#4A5568; font-size:16px; max-width:640px; }
+
+  /* SOBRE */
+  .sobre-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+  .sobre-grid img{ width:100%; border-radius:8px; object-fit:cover; height:480px; }
+  .stats-row{ display:flex; gap:40px; margin-top:40px; flex-wrap:wrap; }
+  .stat{ }
+  .stat .num{ font-family:'Playfair Display',serif; font-size:34px; color:var(--azul); font-weight:700; }
+  .stat .label{ font-size:13.5px; color:#6B7688; margin-top:4px; }
+
+  /* ESPECIALIDADES */
+  .bg-light{ background:var(--cinza-claro); }
+  .cards-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:26px; margin-top:50px; }
+  .card{
+    background:#fff; border:1px solid #E7EAEE; border-radius:10px; padding:34px 28px;
+    transition: all .3s ease; cursor:default;
+  }
+  .card:hover{ transform:translateY(-6px); box-shadow:0 18px 40px rgba(15,76,129,.12); border-color:var(--dourado); }
+  .card .icon{
+    width:46px; height:46px; border-radius:50%; background:var(--azul); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:18px;
+  }
+  .card h3{ font-size:18px; margin-bottom:8px; color:var(--azul-escuro); }
+  .card p{ font-size:14.5px; color:#6B7688; }
+
+  /* DIFERENCIAIS */
+  .dif-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:32px; margin-top:50px; }
+  .dif-item{ display:flex; gap:16px; align-items:flex-start; }
+  .dif-item .dot{ width:38px; height:38px; flex-shrink:0; border-radius:8px; background:var(--cinza-claro); display:flex; align-items:center; justify-content:center; color:var(--dourado); font-weight:700; }
+  .dif-item h4{ font-size:15.5px; margin-bottom:4px; color:var(--azul-escuro); }
+  .dif-item p{ font-size:13.5px; color:#6B7688; }
+
+  /* PROCESSO */
+  .timeline{ margin-top:60px; display:flex; flex-direction:column; gap:0; max-width:640px; margin-left:auto; margin-right:auto; }
+  .tl-step{ display:flex; gap:22px; padding-bottom:44px; position:relative; }
+  .tl-step:last-child{ padding-bottom:0; }
+  .tl-step:not(:last-child)::before{
+    content:''; position:absolute; left:19px; top:44px; bottom:0; width:1px; background:var(--prata);
+  }
+  .tl-num{
+    width:40px; height:40px; border-radius:50%; background:var(--azul); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:600; flex-shrink:0; font-size:15px;
+  }
+  .tl-step h4{ font-size:17px; color:var(--azul-escuro); margin-bottom:4px; }
+  .tl-step p{ font-size:14.5px; color:#6B7688; }
+
+  /* DEPOIMENTOS */
+  .testi-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:26px; margin-top:50px; }
+  .testi-card{ background:#fff; border:1px solid #E7EAEE; border-radius:10px; padding:32px; }
+  .stars{ color:var(--dourado); font-size:14px; margin-bottom:14px; }
+  .testi-card p.quote{ font-size:15.5px; color:#3A4453; font-style:italic; margin-bottom:20px; }
+  .testi-author{ display:flex; align-items:center; gap:12px; }
+  .testi-author .avatar{
+    width:42px; height:42px; border-radius:50%; background:var(--azul); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:600; font-size:14px;
+  }
+  .testi-author .name{ font-size:14px; font-weight:600; color:var(--azul-escuro); }
+
+  /* CTA */
+  .cta-section{
+    background:linear-gradient(135deg, var(--azul), var(--azul-escuro));
+    text-align:center; color:#fff;
+  }
+  .cta-section h2{ color:#fff; font-size:clamp(28px,4vw,42px); margin-bottom:22px; }
+  .cta-section p{ color:rgba(255,255,255,.8); margin-bottom:36px; }
+
+  /* CONTATO */
+  .contato-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+  .info-list{ margin-top:28px; display:flex; flex-direction:column; gap:20px; }
+  .info-item{ display:flex; gap:14px; align-items:flex-start; }
+  .info-item .ic{ color:var(--azul); font-size:18px; margin-top:2px; }
+  .info-item strong{ display:block; font-size:14.5px; color:var(--azul-escuro); }
+  .info-item span{ font-size:14.5px; color:#6B7688; }
+  form.contact-form{ display:flex; flex-direction:column; gap:16px; }
+  form.contact-form input, form.contact-form textarea{
+    padding:14px 16px; border:1px solid #DDE2E8; border-radius:6px; font-family:'Inter',sans-serif; font-size:14.5px;
+    outline:none; transition:border-color .25s ease;
+  }
+  form.contact-form input:focus, form.contact-form textarea:focus{ border-color:var(--azul); }
+  form.contact-form textarea{ min-height:120px; resize:vertical; }
+  .map-embed{ margin-top:40px; border-radius:10px; overflow:hidden; border:1px solid #E7EAEE; }
+  .map-embed iframe{ width:100%; height:280px; border:0; display:block; }
+
+  /* FOOTER */
+  footer{
+    background:#0A1B2E; color:rgba(255,255,255,.7); padding:60px 6% 30px;
+  }
+  .footer-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:40px; max-width:1180px; margin:0 auto; }
+  footer h4{ color:#fff; font-size:15px; margin-bottom:16px; font-family:'Playfair Display',serif; }
+  footer p, footer a{ font-size:13.5px; color:rgba(255,255,255,.6); text-decoration:none; }
+  footer ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .footer-bottom{ text-align:center; margin-top:50px; padding-top:26px; border-top:1px solid rgba(255,255,255,.1); font-size:12.5px; color:rgba(255,255,255,.4); }
+
+  /* FLOATING BUTTONS */
+  .float-btn{
+    position:fixed; right:26px; z-index:90; width:56px; height:56px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,.2);
+    border:none; transition: all .3s ease;
+  }
+  #whatsapp-btn{ bottom:26px; background:#25D366; color:#fff; font-size:26px; text-decoration:none; }
+  #whatsapp-btn:hover{ transform:scale(1.08); }
+  #top-btn{
+    bottom:94px; background:#fff; color:var(--azul); border:1px solid #E7EAEE; font-size:18px;
+    opacity:0; pointer-events:none;
+  }
+  #top-btn.show{ opacity:1; pointer-events:auto; }
+
+  /* REVEAL ANIMATION */
+  .reveal{ opacity:0; transform:translateY(28px); transition: all .7s cubic-bezier(.2,.7,.3,1); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (max-width:860px){
+    .nav-links{
+      position:fixed; top:0; right:0; height:100vh; width:220px; background:#fff;
+      flex-direction:column; padding:100px 30px; gap:26px; transform:translateX(100%);
+      transition: transform .35s ease; box-shadow:-8px 0 30px rgba(0,0,0,.08);
+    }
+    .nav-links.open{ transform:translateX(0); }
+    .nav-links a{ color:var(--texto) !important; }
+    .nav-toggle{ display:block; }
+    .sobre-grid, .contato-grid{ grid-template-columns:1fr; }
+    .sobre-grid img{ height:320px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="logo">Dentista · Clínica</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero">Início</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#especialidades">Especialidades</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle">☰</button>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="hero-content">
+    <span class="eyebrow">Odontologia de excelência em São Paulo</span>
+    <h1>Cuidamos do seu sorriso com excelência.</h1>
+    <p>Tecnologia, experiência e atendimento humanizado para transformar sua saúde bucal.</p>
+    <div class="hero-btns">
+      <a href="#contato" class="btn btn-primary">Agendar Consulta</a>
+      <a href="https://wa.me/551120962548" target="_blank" class="btn btn-outline">Falar no WhatsApp</a>
+    </div>
+    <div class="rating-pill">★★★★★ &nbsp;5.0 no Google</div>
+  </div>
+</header>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="section-inner sobre-grid">
+    <img class="reveal" src="https://images.unsplash.com/photo-1629909615184-74f495363b67?q=80&w=1200&auto=format&fit=crop" alt="Interior da clínica" />
+    <div class="reveal">
+      <span class="eyebrow-dark">Sobre a clínica</span>
+      <h2 class="section-title">Excelência e cuidado em cada detalhe</h2>
+      <p class="section-text">Há anos oferecemos atendimento odontológico humanizado, aliando equipamentos modernos e uma equipe especializada para cuidar da sua saúde bucal com segurança, conforto e resultados duradouros.</p>
+      <div class="stats-row">
+        <div class="stat"><div class="num">+8</div><div class="label">Anos de confiança</div></div>
+        <div class="stat"><div class="num">★★★★★</div><div class="label">Avaliação máxima</div></div>
+        <div class="stat"><div class="num">100s</div><div class="label">Pacientes satisfeitos</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section id="especialidades" class="bg-light">
+  <div class="section-inner">
+    <span class="eyebrow-dark">O que oferecemos</span>
+    <h2 class="section-title">Especialidades</h2>
+    <p class="section-text">Tratamentos completos para todas as fases da sua saúde bucal.</p>
+    <div class="cards-grid">
+      <div class="card reveal"><div class="icon">🦷</div><h3>Clínica Geral</h3><p>Diagnóstico e cuidados preventivos completos.</p></div>
+      <div class="card reveal"><div class="icon">🔩</div><h3>Implantes</h3><p>Recuperação de dentes com tecnologia de ponta.</p></div>
+      <div class="card reveal"><div class="icon">📐</div><h3>Ortodontia</h3><p>Alinhamento dental para todas as idades.</p></div>
+      <div class="card reveal"><div class="icon">✨</div><h3>Limpeza</h3><p>Profilaxia e manutenção da saúde bucal.</p></div>
+      <div class="card reveal"><div class="icon">🩺</div><h3>Canal</h3><p>Tratamento endodôntico com conforto.</p></div>
+      <div class="card reveal"><div class="icon">👑</div><h3>Próteses</h3><p>Reabilitação estética e funcional.</p></div>
+      <div class="card reveal"><div class="icon">💎</div><h3>Lentes de Contato Dental</h3><p>Estética natural e sorriso perfeito.</p></div>
+      <div class="card reveal"><div class="icon">🌟</div><h3>Clareamento</h3><p>Sorriso mais branco com segurança.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="section-inner">
+    <span class="eyebrow-dark">Diferenciais</span>
+    <h2 class="section-title">Por que escolher nossa clínica</h2>
+    <div class="dif-grid">
+      <div class="dif-item reveal"><div class="dot">✓</div><div><h4>Atendimento Humanizado</h4><p>Cuidado próximo e acolhedor.</p></div></div>
+      <div class="dif-item reveal"><div class="dot">✓</div><div><h4>Equipamentos Modernos</h4><p>Tecnologia de ponta em cada procedimento.</p></div></div>
+      <div class="dif-item reveal"><div class="dot">✓</div><div><h4>Ambiente Confortável</h4><p>Espaço pensado para o seu bem-estar.</p></div></div>
+      <div class="dif-item reveal"><div class="dot">✓</div><div><h4>Biossegurança</h4><p>Protocolos rígidos de higiene.</p></div></div>
+      <div class="dif-item reveal"><div class="dot">✓</div><div><h4>Pontualidade</h4><p>Seu tempo é valioso para nós.</p></div></div>
+      <div class="dif-item reveal"><div class="dot">✓</div><div><h4>Equipe Especializada</h4><p>Profissionais qualificados e experientes.</p></div></div>
+      <div class="dif-item reveal"><div class="dot">✓</div><div><h4>Tecnologia Digital</h4><p>Diagnósticos precisos e rápidos.</p></div></div>
+      <div class="dif-item reveal"><div class="dot">✓</div><div><h4>Localização Privilegiada</h4><p>Fácil acesso no Jardim Anália Franco.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="processo" class="bg-light">
+  <div class="section-inner">
+    <span class="eyebrow-dark">Como funciona</span>
+    <h2 class="section-title">Seu tratamento passo a passo</h2>
+    <div class="timeline">
+      <div class="tl-step reveal"><div class="tl-num">1</div><div><h4>Agendamento</h4><p>Marque sua consulta pelo telefone ou WhatsApp.</p></div></div>
+      <div class="tl-step reveal"><div class="tl-num">2</div><div><h4>Avaliação</h4><p>Diagnóstico completo da sua saúde bucal.</p></div></div>
+      <div class="tl-step reveal"><div class="tl-num">3</div><div><h4>Plano de Tratamento</h4><p>Definimos juntos o melhor caminho para você.</p></div></div>
+      <div class="tl-step reveal"><div class="tl-num">4</div><div><h4>Execução</h4><p>Procedimentos realizados com segurança e conforto.</p></div></div>
+      <div class="tl-step reveal"><div class="tl-num">5</div><div><h4>Acompanhamento</h4><p>Cuidado contínuo para manter seu sorriso saudável.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos">
+  <div class="section-inner">
+    <span class="eyebrow-dark">Depoimentos</span>
+    <h2 class="section-title">O que dizem nossos pacientes</h2>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Atendimento e infraestrutura impecáveis!"</p>
+        <div class="testi-author">
+          <div class="avatar">RA</div>
+          <div class="name">Ricardo Alexandre</div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Faço tratamentos com a Dra Juliana faz 8 anos."</p>
+        <div class="testi-author">
+          <div class="avatar">VC</div>
+          <div class="name">Vanessa Corso</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-inner">
+    <h2>Seu novo sorriso começa hoje.</h2>
+    <p>Agende sua consulta e conheça nossa estrutura completa.</p>
+    <a href="#contato" class="btn btn-primary" style="background:#fff;color:var(--azul);">Agendar Consulta</a>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-inner contato-grid">
+    <div>
+      <span class="eyebrow-dark">Contato</span>
+      <h2 class="section-title">Fale conosco</h2>
+      <div class="info-list">
+        <div class="info-item"><span class="ic">📍</span><div><strong>Endereço</strong><span>Rua Edmundo Xavier, 201 – Jardim Anália Franco, São Paulo – SP, CEP 03408-040</span></div></div>
+        <div class="info-item"><span class="ic">📞</span><div><strong>Telefone</strong><span><a href="tel:+551120962548" style="color:#6B7688;">(11) 2096-2548</a></span></div></div>
+        <div class="info-item"><span class="ic">🕐</span><div><strong>Horário</strong><span>Segunda à Sexta, 08:00 às 18:00</span></div></div>
+      </div>
+      <div class="map-embed">
+        <iframe loading="lazy" src="https://www.google.com/maps?q=Rua+Edmundo+Xavier,+201,+Jardim+Anália+Franco,+São+Paulo&output=embed"></iframe>
+      </div>
+    </div>
+    <div>
+      <!--
+        Ponto de integração n8n:
+        Configure este form para enviar um POST para o Webhook do n8n
+        (ex: https://seu-n8n.dominio.com/webhook/contato-clinica)
+        no lugar do handleSubmit abaixo, que hoje só simula o envio.
+      -->
+      <form class="contact-form" id="contactForm">
+        <input type="text" name="nome" placeholder="Nome" required />
+        <input type="tel" name="telefone" placeholder="Telefone" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <textarea name="mensagem" placeholder="Mensagem"></textarea>
+        <button type="submit" class="btn btn-primary" style="justify-content:center;">Enviar Mensagem</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>Dentista · Clínica</h4>
+      <p>Cuidando do seu sorriso com excelência, tecnologia e atendimento humanizado.</p>
+    </div>
+    <div>
+      <h4>Contato</h4>
+      <ul>
+        <li>(11) 2096-2548</li>
+        <li>Rua Edmundo Xavier, 201</li>
+        <li>Jardim Anália Franco, São Paulo – SP</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Horário</h4>
+      <ul><li>Segunda à Sexta</li><li>08:00 às 18:00</li></ul>
+    </div>
+    <div>
+      <h4>Links Rápidos</h4>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#especialidades">Especialidades</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Dentista - Clínica. Todos os direitos reservados.</div>
+</footer>
+
+<!-- BOTÕES FLUTUANTES -->
+<a id="whatsapp-btn" class="float-btn" href="https://wa.me/551120962548" target="_blank" aria-label="WhatsApp">💬</a>
+<button id="top-btn" class="float-btn" aria-label="Voltar ao topo">↑</button>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  const topBtn = document.getElementById('top-btn');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 60){ navbar.classList.add('scrolled'); topBtn.classList.add('show'); }
+    else { navbar.classList.remove('scrolled'); topBtn.classList.remove('show'); }
+  });
+
+  topBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){ entry.target.classList.add('in'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Contact form — placeholder para integração futura com n8n
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    // TODO (integração n8n):
+    // Substituir o bloco abaixo por um fetch para o Webhook do n8n, por exemplo:
+    //
+    // const data = Object.fromEntries(new FormData(form));
+    // fetch('https://SEU-N8N/webhook/contato-clinica', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(data)
+    // });
+
+    alert('Mensagem enviada! Em breve entraremos em contato. (Formulário ainda não conectado a nenhuma automação.)');
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
